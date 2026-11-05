@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./app.css";
 import { GeracaoPage } from "./GeracaoPage";
 
-const CAPACITY_REPO = "https://github.com/airportlab/airport-capacity";
+const CAPACITY_SITE = "https://airportlab.github.io/airport-capacity/";
 const CC0_DEED_URL =
   "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR";
 const OFL_LICENSE_URL =
@@ -142,10 +142,10 @@ function AboutPage({ onBack }: { onBack: () => void }) {
         <h1>Sobre</h1>
       </header>
       <section className="panel">
-        <h2>Continuação</h2>
+        <h2>Sobre</h2>
         <p>
           Este site estuda a hora-pico usada em{" "}
-          <a href={CAPACITY_REPO}>capacidade aeroportuária</a>.
+          <a href={CAPACITY_SITE}>capacidade aeroportuária</a>.
         </p>
         <p>{UNOFFICIAL_NOTICE}</p>
       </section>
