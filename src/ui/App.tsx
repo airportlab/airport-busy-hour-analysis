@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./app.css";
+import { GeracaoPage } from "./GeracaoPage";
 
 const CAPACITY_REPO = "https://github.com/airportlab/airport-capacity";
 const CC0_DEED_URL =
@@ -10,12 +11,13 @@ const OFL_LICENSE_URL =
 const UNOFFICIAL_NOTICE =
   "Ferramenta não oficial. Não substitui o PEA, a ANAC nem um estudo assinado.";
 
-type Section = "estudo" | "metodos" | "parquet" | "sobre";
+type Section = "estudo" | "metodos" | "parquet" | "geracao" | "sobre";
 
 const TABS: readonly { id: Exclude<Section, "sobre">; label: string }[] = [
   { id: "estudo", label: "Estudo" },
   { id: "metodos", label: "Métodos" },
   { id: "parquet", label: "Parquet" },
+  { id: "geracao", label: "Geração" },
 ];
 
 const METHODS: readonly { title: string; text: string }[] = [
@@ -135,7 +137,10 @@ export function App() {
             </nav>
             {section === "estudo" ? <EstudoPage /> : null}
             {section === "metodos" ? <MetodosPage /> : null}
-            {section === "parquet" ? <ParquetPage /> : null}
+            {section === "parquet" ? (
+              <ParquetPage onOpenGeracao={() => setSection("geracao")} />
+            ) : null}
+            {section === "geracao" ? <GeracaoPage /> : null}
           </>
         )}
       </div>
@@ -184,15 +189,17 @@ function MetodosPage() {
   );
 }
 
-function ParquetPage() {
+function ParquetPage({ onOpenGeracao }: { onOpenGeracao: () => void }) {
   return (
     <div className="stack">
       <section className="panel">
         <h2>Arquivo de movimentação</h2>
         <p>
           O outro projeto lê o arquivo como <code>movimentacoes.parquet</code>.
-          As colunas abaixo são as que ele espera. A geração do arquivo ainda
-          não está neste site.
+          As colunas abaixo são as que ele espera. O arquivo é gerado na{" "}
+          <button type="button" className="linkish" onClick={onOpenGeracao}>
+            aba Geração
+          </button>.
         </p>
         <ul>
           {PARQUET_COLUMNS.map((column) => (

@@ -129,14 +129,31 @@
 }
 
 .about-page ul,
-.panel ul {
+.about-page ol,
+.panel ul,
+.panel ol {
   margin: 0 0 12px;
   padding-left: 1.2rem;
 }
 
 .about-page ul:last-child,
-.panel ul:last-child {
+.about-page ol:last-child,
+.panel ul:last-child,
+.panel ol:last-child {
   margin-bottom: 0;
+}
+
+.panel pre {
+  margin: 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  background: var(--sand);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.panel pre code {
+  font-size: 0.85rem;
 }
 
 .about-page a,
@@ -217,6 +234,30 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field input {
+  font: inherit;
+  font-weight: 400;
+  max-width: 100%;
+}
+
+.status {
+  margin-top: 12px;
+  color: var(--ok);
+}
+
+.erro {
+  margin-top: 12px;
+  color: var(--no);
 }
 
 button {

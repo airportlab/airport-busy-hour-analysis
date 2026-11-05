@@ -7,3 +7,4 @@ dist
 .cursor
 .tmp-*
 *.parquet
+manifest.json
