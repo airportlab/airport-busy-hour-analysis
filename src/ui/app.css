@@ -279,6 +279,18 @@ button:disabled {
   cursor: wait;
 }
 
+button.linkish {
+  border: 0;
+  background: none;
+  color: var(--slate);
+  padding: 0;
+  border-radius: 0;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
 @media (max-width: 840px) {
   .hero h1 {
     font-size: 2rem;

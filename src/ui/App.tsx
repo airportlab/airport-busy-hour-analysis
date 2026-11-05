@@ -11,12 +11,10 @@ const OFL_LICENSE_URL =
 const UNOFFICIAL_NOTICE =
   "Ferramenta não oficial. Não substitui o PEA, a ANAC nem um estudo assinado.";
 
-type Section = "estudo" | "metodos" | "parquet" | "geracao" | "sobre";
+type Section = "metodos" | "geracao" | "sobre";
 
 const TABS: readonly { id: Exclude<Section, "sobre">; label: string }[] = [
-  { id: "estudo", label: "Estudo" },
   { id: "metodos", label: "Métodos" },
-  { id: "parquet", label: "Parquet" },
   { id: "geracao", label: "Geração" },
 ];
 
@@ -47,36 +45,8 @@ const METHODS: readonly { title: string; text: string }[] = [
   },
 ];
 
-const PARQUET_COLUMNS: readonly { name: string; text: string }[] = [
-  { name: "DT_CALCO", text: "Data do calço." },
-  { name: "HH_CALCO", text: "Hora do calço." },
-  { name: "QT_PAX_LOCAL", text: "Passageiros locais do movimento." },
-  {
-    name: "QT_PAX_CONEXAO_DOMESTICO",
-    text: "Passageiros em conexão doméstica.",
-  },
-  {
-    name: "QT_PAX_CONEXAO_INTERNACIONAL",
-    text: "Passageiros em conexão internacional.",
-  },
-  {
-    name: "NR_AEROPORTO_REFERENCIA",
-    text: "ICAO do aeroporto de referência, como SBSG ou SBGR.",
-  },
-  { name: "NR_MOVIMENTO_TIPO", text: "D para embarque e P para chegada." },
-  { name: "NR_NATUREZA", text: "D para doméstico e I para internacional." },
-  {
-    name: "NR_BOX",
-    text: "Posição. Entra quando a hora é filtrada por box.",
-  },
-  {
-    name: "NR_TERMINAL",
-    text: "Terminal. Entra quando a hora é filtrada por terminal.",
-  },
-];
-
 export function App() {
-  const [section, setSection] = useState<Section>("estudo");
+  const [section, setSection] = useState<Section>("metodos");
   const viewingAbout = section === "sobre";
 
   return (
@@ -88,7 +58,7 @@ export function App() {
               <button
                 type="button"
                 className="kicker-home"
-                onClick={() => setSection("estudo")}
+                onClick={() => setSection("metodos")}
               >
                 Hora-pico de projeto
               </button>
@@ -117,7 +87,7 @@ export function App() {
         </header>
 
         {viewingAbout ? (
-          <AboutPage onBack={() => setSection("estudo")} />
+          <AboutPage onBack={() => setSection("metodos")} />
         ) : (
           <>
             <nav className="tabs" aria-label="Seções do estudo">
@@ -135,36 +105,12 @@ export function App() {
                 ))}
               </div>
             </nav>
-            {section === "estudo" ? <EstudoPage /> : null}
             {section === "metodos" ? <MetodosPage /> : null}
-            {section === "parquet" ? (
-              <ParquetPage onOpenGeracao={() => setSection("geracao")} />
-            ) : null}
             {section === "geracao" ? <GeracaoPage /> : null}
           </>
         )}
       </div>
     </main>
-  );
-}
-
-function EstudoPage() {
-  return (
-    <div className="stack">
-      <section className="panel">
-        <h2>O que é este site</h2>
-        <p>
-          Este site estuda a demanda da hora-pico e acompanha o{" "}
-          <a href={CAPACITY_REPO}>projeto de capacidade aeroportuária</a>. O
-          cálculo dos métodos ainda não está nesta página.
-        </p>
-        <p>
-          Lá, um arquivo <code>.parquet</code> de movimentação entra na aba DHP.
-          O período são os últimos 12 meses completos do aeroporto. A hora
-          gravada no componente é a 30ª hora-relógio.
-        </p>
-      </section>
-    </div>
   );
 }
 
@@ -181,30 +127,6 @@ function MetodosPage() {
           {METHODS.map((method) => (
             <li key={method.title}>
               <strong>{method.title}.</strong> {method.text}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-  );
-}
-
-function ParquetPage({ onOpenGeracao }: { onOpenGeracao: () => void }) {
-  return (
-    <div className="stack">
-      <section className="panel">
-        <h2>Arquivo de movimentação</h2>
-        <p>
-          O outro projeto lê o arquivo como <code>movimentacoes.parquet</code>.
-          As colunas abaixo são as que ele espera. O arquivo é gerado na{" "}
-          <button type="button" className="linkish" onClick={onOpenGeracao}>
-            aba Geração
-          </button>.
-        </p>
-        <ul>
-          {PARQUET_COLUMNS.map((column) => (
-            <li key={column.name}>
-              <code>{column.name}</code> — {column.text}
             </li>
           ))}
         </ul>
@@ -242,7 +164,7 @@ function AboutPage({ onBack }: { onBack: () => void }) {
       </section>
       <div className="actions about-back">
         <button type="button" className="ghost" onClick={onBack}>
-          Voltar ao estudo
+          Voltar
         </button>
       </div>
     </div>
