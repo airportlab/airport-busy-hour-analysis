@@ -1,0 +1,66 @@
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-500.css";
+@import "@fontsource/ibm-plex-sans/latin-600.css";
+@import "@fontsource/ibm-plex-sans/latin-700.css";
+@import "@fontsource/ibm-plex-serif/latin-600.css";
+@import "@fontsource/ibm-plex-serif/latin-400-italic.css";
+
+:root {
+  color-scheme: light;
+  --ink: #1c2430;
+  --paper: #f5f6f4;
+  --page: #eef0f2;
+  --sand: #e4e6ea;
+  --slate: #2f4a63;
+  --ok: #215c38;
+  --ok-bg: #e5f3ea;
+  --ok-border: #b7dcc4;
+  --no: #8a2b22;
+  --no-bg: #fde8e4;
+  --no-border: #f0c2ba;
+  --muted: #4a5563;
+  --quiet: #5c6570;
+  --faint: #6b7280;
+  --empty: #8b9198;
+  --border: #d5d8dc;
+  --border-strong: #c5c9ce;
+  --panel-border: #d0d4d8;
+  --field: #ffffff;
+  --on-ink: #f5f6f4;
+  --altered: #eef2f5;
+  --flash: #3d4a58;
+  --print: #ffffff;
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  font-family: var(--font-sans);
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--page);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
